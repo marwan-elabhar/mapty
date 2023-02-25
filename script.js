@@ -186,7 +186,7 @@ class App {
 
     _renderWorkout(workout) {
         let html = `<li class="workout workout--${workout.type}" data-id="${workout.id}">
-        <h2 class="workout__title">Running on April 14</h2>
+        <h2 class="workout__title">${workout.description}</h2>
         <div class="workout__details">
           <span class="workout__icon">${workout.type === 'running' ? '🏃‍♂️' : '🚴‍♀️'}</span>
           <span class="workout__value">${workout.distance}</span>
@@ -225,7 +225,7 @@ class App {
             <span class="workout__value">${workout.elevationGain}</span>
             <span class="workout__unit">m</span>
           </div>
-        </li> -->`
+        </li>`
 
 
         }
@@ -254,6 +254,7 @@ class App {
     }
 
     _getLocalStorage() {
+        if(!localStorage.getItem('workouts')) return;
         const data = JSON.parse(localStorage.getItem('workouts'))
         this.#workouts = data
 
